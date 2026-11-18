@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="AI Made Clear helps beginners understand artificial intelligence, discover AI tools and learn how to use them in plain English.">
+<title>AI Made Clear — Discover. Understand. Use AI.</title>
+<style>
+:root{
+ --bg:#0b1020;--surface:#121b2f;--surface2:#192640;--ink:#f4f6ff;
+ --muted:#aeb9cf;--line:rgba(255,255,255,.12);--mint:#78e2c8;
+ --violet:#b7bdff;--gold:#f4d38a;--radius:20px
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 82% 0%,rgba(120,226,200,.13),transparent 34rem),radial-gradient(ellipse at 0% 18%,rgba(183,189,255,.14),transparent 33rem),var(--bg);color:var(--ink);font:16px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1120px,calc(100% - 40px));margin:auto}
+header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px 0;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:850;letter-spacing:-.035em}
+.logo{display:grid;place-items:center;width:39px;height:39px;border-radius:12px;background:linear-gradient(135deg,var(--violet),var(--mint));color:#10172a;font-weight:900}
+nav{display:flex;gap:22px;flex-wrap:wrap}
+nav a{color:var(--muted);font-size:.9rem}
+av a:hover,.tool-link:hover{color:var(--mint)}
+.hero{padding:86px 0 62px;max-width:850px}
+.eyebrow,.kicker{color:var(--mint);font-size:.78rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
+h1{font-size:clamp(2.9rem,7.6vw,5.4rem);line-height:1.02;letter-spacing:-.067em;margin:17px 0 22px}
+.gradient{background:linear-gradient(100deg,var(--violet),var(--mint));background-clip:text;color:transparent}
+.hero p{max-width:720px;font-size:1.17rem;color:var(--muted)}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:27px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 17px;border:1px solid var(--line);border-radius:12px;font-weight:750}
+.btn.primary{background:linear-gradient(110deg,var(--violet),var(--mint));border:0;color:#10172a}
+.btn:hover{transform:translateY(-1px)}
+.quickfacts{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.fact{border:1px solid var(--line);background:#ffffff08;padding:9px 13px;border-radius:11px;color:var(--muted);font-size:.86rem}
+.fact strong{color:var(--ink)}
+section{padding:42px 0}
+h2{font-size:clamp(1.85rem,4vw,2.55rem);letter-spacing:-.045em;line-height:1.15;margin:8px 0}
+.intro{color:var(--muted);max-width:730px;margin:8px 0 22px}
+.searchrow{display:flex;gap:10px;margin:24px 0 13px}
+.search{width:100%;min-width:0;padding:14px 16px;border:1px solid var(--line);border-radius:13px;background:var(--surface);color:var(--ink);font:inherit}
+.search:focus,.filter:focus,.btn:focus{outline:2px solid var(--mint);outline-offset:2px}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 22px}
+.filter{cursor:pointer;padding:8px 13px;border:1px solid var(--line);border-radius:99px;background:transparent;color:var(--muted);font:inherit;font-size:.86rem}
+.filter.active{color:var(--mint);border-color:#78e2c877;background:#78e2c817}
+.tool-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tool{display:flex;flex-direction:column;gap:10px;min-height:220px;padding:19px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(150deg,#ffffff0d,#ffffff04)}
+.tool-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.tool h3{margin:0;font-size:1.08rem}
+.category{font-size:.73rem;color:var(--mint);border:1px solid #78e2c84d;border-radius:99px;padding:4px 8px;white-space:nowrap}
+.tool p{color:var(--muted);font-size:.92rem;margin:0;flex:1}
+.tool-link{color:var(--violet);font-size:.9rem;font-weight:750}
+.empty{display:none;padding:18px;border:1px dashed var(--line);border-radius:13px;color:var(--muted)}
+.disclaimer{font-size:.82rem;color:#8996af;margin-top:15px}
+.learn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.learn-card{padding:21px;border:1px solid var(--line);border-radius:17px;background:var(--surface)}
+.learn-card .emoji{font-size:1.45rem}
+.learn-card h3{margin:9px 0 5px}
+.learn-card p{color:var(--muted);font-size:.92rem;margin:0}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.panel{padding:24px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,#ffffff0b,#ffffff04)}
+.panel p{color:var(--muted)}
+.term-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.term{padding:14px 16px;border:1px solid var(--line);border-radius:13px;background:#ffffff07}
+.term strong{color:var(--mint)}
+.term p{margin:4px 0 0;color:var(--muted);font-size:.9rem}
+.promptbox{padding:22px;border:1px solid #b7bdff55;border-radius:18px;background:#b7bdff0c}
+.promptbox code{display:block;padding:14px;margin:13px 0;border-radius:11px;background:#080e1b;color:#e5e9ff;white-space:normal;font:.92rem/1.65 ui-monospace,SFMono-Regular,Consolas,monospace}
+.copy{cursor:pointer;padding:8px 12px;border:1px solid var(--line);border-radius:9px;background:var(--surface2);color:var(--ink);font:inherit}
+.callout{padding:17px 19px;border-left:3px solid var(--gold);border-radius:0 12px 12px 0;background:#f4d38a10;color:var(--muted)}
+footer{margin-top:40px;padding:26px 0 36px;border-top:1px solid var(--line);color:#8995ad;font-size:.85rem}
+:root{color-scheme:dark}
+body.light-mode{--bg:#f3f6fb;--surface:#ffffff;--surface2:#e9eef7;--ink:#172033;--muted:#536078;--line:rgba(20,35,60,.16);background:#f3f6fb;color:var(--ink)}
+body.light-mode .tool,body.light-mode .panel,body.light-mode .term{background:#fff}
+body.light-mode .promptbox code{background:#eef1f8;color:#172033}
+body.light-mode .fact{background:#fff}
+.top-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.small-btn,.tool-action{cursor:pointer;border:1px solid var(--line);border-radius:10px;padding:8px 11px;background:var(--surface2);color:var(--ink);font:inherit;font-size:.84rem}
+.tool-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.tool-action.saved{color:var(--gold);border-color:var(--gold)}
+.tool-count{color:var(--muted);font-size:.86rem;margin:8px 0}
+.extra-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.extra-panel{padding:21px;border:1px solid var(--line);border-radius:17px;background:var(--surface)}
+.extra-panel h3{margin:0 0 7px}
+.extra-panel p,.extra-panel label{color:var(--muted);font-size:.92rem}
+.extra-panel input,.extra-panel select,.extra-panel textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;margin:6px 0 12px}
+.extra-result{margin-top:12px;padding:13px;border-radius:11px;background:#78e2c814;border:1px solid #78e2c844;color:var(--ink);min-height:42px}
+.quiz-option{display:block;width:100%;text-align:left;margin:7px 0;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface2);color:var(--ink);cursor:pointer}
+.progress-track{height:6px;background:var(--surface2);border-radius:99px;overflow:hidden;margin:12px 0}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--violet),var(--mint));transition:width .2s}
+.back-top{position:fixed;right:18px;bottom:18px;z-index:5;border:0;border-radius:99px;padding:11px 14px;background:var(--mint);color:#102033;font-weight:800;cursor:pointer;box-shadow:0 8px 25px #0003}
+@media(max-width:700px){.extra-grid{grid-template-columns:1fr}}
+@media(max-width:800px){.tool-grid,.learn-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:570px){.wrap{width:calc(100% - 28px)}header{align-items:flex-start;flex-direction:column}nav{gap:14px}.hero{padding:62px 0 45px}.tool-grid,.learn-grid,.two-col,.term-grid{grid-template-columns:1fr}.searchrow{margin-top:18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <a class="brand" href="#home"><span class="logo">AI</span><span>AI MADE <span class="gradient">CLEAR</span></span></a>
+ <nav aria-label="Main navigation">
+  <a href="#directory">Tools</a><a href="#learn">Learn AI</a><a href="#glossary">AI dictionary</a><a href="#about">About</a><a href="#extras">Interactive zone</a>
+ </nav>
+</header>
+<main>
+<section class="hero" id="home">
+ <div class="eyebrow">A simple starting point for everyone</div>
+ <h1>Discover AI.<br><span class="gradient">Understand it. Use it.</span></h1>
+ <p>Artificial intelligence can sound complicated, especially when you're just starting out. This website makes it easier: find useful AI tools, learn what they do and understand the language around AI — without needing a technical background.</p>
+ <div class="actions"><a class="btn primary" href="#directory">Explore AI tools ↓</a><a class="btn" href="#learn">Start learning</a></div>
+ <div class="quickfacts"><div class="fact"><strong>Beginner-friendly</strong> · start from zero</div><div class="fact"><strong>Plain English</strong> · jargon explained</div><div class="fact"><strong>Practical</strong> · learn by trying</div></div>
+ <div class="top-actions"><button class="small-btn" id="themeToggle" type="button">☀️ Switch to light mode</button><button class="small-btn" id="randomTool" type="button">🎲 Surprise me with a tool</button></div>
+</section>
+<section id="directory">
+ <div class="kicker">The directory</div><h2>What do you want AI to help with?</h2>
+ <p class="intro">Browse tools by task or search for something specific. Each description tells you what the tool is for in everyday language.</p>
+ <div class="searchrow"><input class="search" id="search" type="search" placeholder="Search tools or tasks — e.g. writing, images, studying..." aria-label="Search AI tools"></div>
+ <div class="tool-count" id="toolCount" aria-live="polite">Showing all tools</div>
+ <div class="filters" id="filters">
+  <button class="filter active" data-category="All">All tools</button>
+  <button class="filter" data-category="Chat">Chat & answers</button>
+  <button class="filter" data-category="Research">Research & study</button>
+  <button class="filter" data-category="Images">Images & design</button>
+  <button class="filter" data-category="Video">Video</button>
+  <button class="filter" data-category="Audio">Audio</button>
+  <button class="filter" data-category="Coding">Coding</button>
+  <button class="filter" data-category="Work">Work & organisation</button><button class="filter" data-category="Saved">★ Saved tools</button>
+ </div>
+ <div class="tool-grid" id="toolGrid">
+  <article class="tool" data-category="Chat" data-search="chatgpt chat questions writing explain ideas brainstorm assistant"><div class="tool-head"><h3>ChatGPT</h3><span class="category">Chat & answers</span></div><p>An AI assistant you can have a conversation with. Ask questions, get explanations, brainstorm ideas, write drafts and learn new topics.</p><a class="tool-link" href="https://chatgpt.com/" target="_blank" rel="noopener">Visit ChatGPT ↗</a></article>
+  <article class="tool" data-category="Chat" data-search="claude chat writing documents explain assistant"><div class="tool-head"><h3>Claude</h3><span class="category">Chat & answers</span></div><p>An AI assistant that can help with writing, understanding documents, exploring ideas and explaining complicated subjects.</p><a class="tool-link" href="https://claude.ai/" target="_blank" rel="noopener">Visit Claude ↗</a></article>
+  <article class="tool" data-category="Chat" data-search="gemini google chat questions images assistant"><div class="tool-head"><h3>Google Gemini</h3><span class="category">Chat & answers</span></div><p>Google's AI assistant. You can ask it questions, explore ideas and get help with different kinds of tasks.</p><a class="tool-link" href="https://gemini.google.com/" target="_blank" rel="noopener">Visit Gemini ↗</a></article>
+  <article class="tool" data-category="Chat" data-search="microsoft copilot assistant work questions"><div class="tool-head"><h3>Microsoft Copilot</h3><span class="category">Chat & answers</span></div><p>An AI assistant from Microsoft for asking questions, creating drafts and getting help with everyday tasks.</p><a class="tool-link" href="https://copilot.microsoft.com/" target="_blank" rel="noopener">Visit Copilot ↗</a></article>
+  <article class="tool" data-category="Research" data-search="perplexity search research sources answers"><div class="tool-head"><h3>Perplexity</h3><span class="category">Research & study</span></div><p>An AI-powered search tool that helps you explore questions and points you towards sources you can check.</p><a class="tool-link" href="https://www.perplexity.ai/" target="_blank" rel="noopener">Visit Perplexity ↗</a></article>
+  <article class="tool" data-category="Research" data-search="notebooklm google notes documents sources study"><div class="tool-head"><h3>NotebookLM</h3><span class="category">Research & study</span></div><p>A Google tool that lets you ask questions about material you provide, such as notes, documents and study sources.</p><a class="tool-link" href="https://notebooklm.google.com/" target="_blank" rel="noopener">Visit NotebookLM ↗</a></article>
+  <article class="tool" data-category="Images" data-search="canva design presentations posters social media graphics"><div class="tool-head"><h3>Canva</h3><span class="category">Images & design</span></div><p>A design website for making posters, presentations and social media graphics, with AI features to help create content.</p><a class="tool-link" href="https://www.canva.com/" target="_blank" rel="noopener">Visit Canva ↗</a></article>
+  <article class="tool" data-category="Images" data-search="adobe firefly image generation edit design"><div class="tool-head"><h3>Adobe Firefly</h3><span class="category">Images & design</span></div><p>Adobe's creative AI tools, including features that can generate and edit images from instructions.</p><a class="tool-link" href="https://firefly.adobe.com/" target="_blank" rel="noopener">Visit Firefly ↗</a></article>
+  <article class="tool" data-category="Images" data-search="ideogram image generator graphic design text"><div class="tool-head"><h3>Ideogram</h3><span class="category">Images & design</span></div><p>An AI image tool that turns written descriptions into pictures and visual designs.</p><a class="tool-link" href="https://ideogram.ai/" target="_blank" rel="noopener">Visit Ideogram ↗</a></article>
+  <article class="tool" data-category="Video" data-search="runway video creation editing ai video"><div class="tool-head"><h3>Runway</h3><span class="category">Video</span></div><p>A creative platform with AI features for generating and editing video content.</p><a class="tool-link" href="https://runwayml.com/" target="_blank" rel="noopener">Visit Runway ↗</a></article>
+  <article class="tool" data-category="Audio" data-search="elevenlabs audio voice text speech"><div class="tool-head"><h3>ElevenLabs</h3><span class="category">Audio</span></div><p>AI audio tools that can turn written text into spoken audio and help with voice projects.</p><a class="tool-link" href="https://elevenlabs.io/" target="_blank" rel="noopener">Visit ElevenLabs ↗</a></article>
+  <article class="tool" data-category="Coding" data-search="github copilot programming code coding assistant"><div class="tool-head"><h3>GitHub Copilot</h3><span class="category">Coding</span></div><p>A coding assistant that suggests code and can help explain programming concepts as you work.</p><a class="tool-link" href="https://github.com/features/copilot" target="_blank" rel="noopener">Visit GitHub Copilot ↗</a></article>
+  <article class="tool" data-category="Coding" data-search="replit build website app code beginner programming"><div class="tool-head"><h3>Replit</h3><span class="category">Coding</span></div><p>An online place to create and run code, with AI features that can help you build and understand projects.</p><a class="tool-link" href="https://replit.com/" target="_blank" rel="noopener">Visit Replit ↗</a></article>
+  <article class="tool" data-category="Coding" data-search="cursor code editor coding software assistant"><div class="tool-head"><h3>Cursor</h3><span class="category">Coding</span></div><p>A code editor with an AI assistant designed to help people work on software projects.</p><a class="tool-link" href="https://cursor.com/" target="_blank" rel="noopener">Visit Cursor ↗</a></article>
+  <article class="tool" data-category="Work" data-search="notion ai notes organisation documents planning"><div class="tool-head"><h3>Notion AI</h3><span class="category">Work & organisation</span></div><p>AI features in Notion that can help you organise notes, work with writing and manage information.</p><a class="tool-link" href="https://www.notion.com/product/ai" target="_blank" rel="noopener">Visit Notion AI ↗</a></article>
+  <article class="tool" data-category="Work" data-search="zapier automation connect apps repeated tasks"><div class="tool-head"><h3>Zapier</h3><span class="category">Work & organisation</span></div><p>A service that connects different apps so routine tasks can happen automatically, with AI features in some workflows.</p><a class="tool-link" href="https://zapier.com/" target="_blank" rel="noopener">Visit Zapier ↗</a></article>
+ </div>
+ <div class="empty" id="empty">No tools match that search. Try a different word or select “All tools”.</div>
+ <p class="disclaimer">This is a starter directory, not a ranking. Features, prices and availability can change. Check each provider's official website for current details.</p>
+</section>
+<section id="learn">
+ <div class="kicker">Learn from the beginning</div><h2>AI explained in everyday language.</h2>
+ <p class="intro">You do not need to know anything about technology to get started. Begin with the basics and build your understanding one step at a time.</p>
+ <div class="learn-grid">
+  <article class="learn-card"><div class="emoji">🧠</div><h3>What is AI?</h3><p>Artificial intelligence is technology that can do tasks that usually need human-like abilities, such as understanding language, spotting patterns or creating content.</p></article>
+  <article class="learn-card"><div class="emoji">💬</div><h3>How do I talk to AI?</h3><p>You type or say what you want help with. Give it context, explain the result you want and ask follow-up questions if the answer is unclear.</p></article>
+  <article class="learn-card"><div class="emoji">✍️</div><h3>What is a prompt?</h3><p>A prompt is simply the question or instruction you give an AI tool. For example: “Explain photosynthesis in simple words.”</p></article>
+  <article class="learn-card"><div class="emoji">🧰</div><h3>What is an AI tool?</h3><p>An AI tool is an app or website that uses artificial intelligence to help with a task, such as writing, research, design or coding.</p></article>
+  <article class="learn-card"><div class="emoji">🎓</div><h3>Can AI get things wrong?</h3><p>Yes. AI can produce answers that sound convincing but are inaccurate. Check important information with trustworthy sources.</p></article>
+  <article class="learn-card"><div class="emoji">🔒</div><h3>Is it safe to share information?</h3><p>Be careful with private information. Do not enter passwords, financial details or confidential information into AI tools.</p></article>
+ </div>
+</section>
+<section id="glossary">
+ <div class="kicker">The jargon translator</div><h2>AI terms without the confusion.</h2>
+ <p class="intro">You may see these words when reading about AI. Here is what they mean in simple terms.</p>
+ <div class="term-grid">
+  <div class="term"><strong>Artificial intelligence (AI)</strong><p>Technology that performs tasks such as understanding language, recognising patterns or creating content.</p></div>
+  <div class="term"><strong>Prompt</strong><p>The question or instruction you give an AI tool.</p></div>
+  <div class="term"><strong>AI model</strong><p>The trained computer system that powers an AI feature — a bit like the engine inside a car.</p></div>
+  <div class="term"><strong>Generative AI</strong><p>AI that can create new content, such as text, pictures, audio or video.</p></div>
+  <div class="term"><strong>Chatbot</strong><p>A tool you communicate with by typing or speaking.</p></div>
+  <div class="term"><strong>Automation</strong><p>Using technology to carry out a repeated task with less manual work.</p></div>
+  <div class="term"><strong>Data</strong><p>Information a computer can use, such as words, numbers, images or measurements.</p></div>
+  <div class="term"><strong>Hallucination</strong><p>When an AI makes up information or gives an incorrect answer as though it were true.</p></div>
+ </div>
+</section>
+<section id="extras">
+ <div class="kicker">Try it yourself</div><h2>Make AI learning interactive.</h2>
+ <p class="intro">A few simple tools to help you explore the directory, practise writing prompts and check what you have learned.</p>
+ <div class="progress-track" aria-label="Page reading progress"><div class="progress-fill" id="readingProgress"></div></div>
+ <div class="extra-grid">
+  <div class="extra-panel"><h3>🔎 Find the right AI tool</h3><p>Choose what you want to do and get a simple suggestion from the directory.</p><label for="goalSelect">What do you want help with?</label><select id="goalSelect"><option value="Chat">Ask questions or understand something</option><option value="Research">Research or study</option><option value="Images">Create images or designs</option><option value="Video">Make or edit videos</option><option value="Audio">Create voice or audio</option><option value="Coding">Learn coding or build something</option><option value="Work">Organise work or automate tasks</option></select><button class="small-btn" id="findTool">Find a tool</button><div class="extra-result" id="finderResult" aria-live="polite">Your suggestion will appear here.</div></div>
+  <div class="extra-panel"><h3>✍️ Build a better prompt</h3><p>A prompt is the instruction you give an AI. Add a topic and say what kind of answer you want.</p><label for="promptTopic">What is your topic?</label><input id="promptTopic" placeholder="e.g. learning about space"><label for="promptStyle">How should AI explain it?</label><select id="promptStyle"><option>In simple language</option><option>Step by step</option><option>With examples</option><option>As a short summary</option></select><button class="small-btn" id="buildPrompt">Build my prompt</button><div class="extra-result" id="promptResult" aria-live="polite">Your prompt will appear here.</div><button class="small-btn" id="copyBuiltPrompt">Copy prompt</button></div>
+  <div class="extra-panel"><h3>🧠 Quick AI knowledge quiz</h3><p>Test the basics. Choose an answer to see whether you got it right.</p><div id="quizQuestion"><strong>What is a prompt?</strong><button class="quiz-option" data-correct="false">A type of computer</button><button class="quiz-option" data-correct="true">The instruction you give an AI</button><button class="quiz-option" data-correct="false">A website address</button></div><div class="extra-result" id="quizFeedback" aria-live="polite">Choose an answer to begin.</div><button class="small-btn" id="nextQuiz">Next question</button></div>
+  <div class="extra-panel"><h3>📚 Prompt ideas</h3><p>Choose a ready-made prompt and copy it into an AI assistant.</p><select id="promptLibrary"><option value="Explain [topic] in simple language and give me three everyday examples.">Explain a topic</option><option value="Help me plan a small project about [subject]. Break it into beginner-friendly steps.">Plan a project</option><option value="Quiz me on [subject] one question at a time. Explain each answer simply.">Study quiz</option><option value="Give me five creative ideas for [goal], and explain the pros and cons of each.">Brainstorm ideas</option></select><div class="extra-result" id="libraryPrompt">Explain [topic] in simple language and give me three everyday examples.</div><button class="small-btn" id="copyLibraryPrompt">Copy prompt</button></div>
+ </div>
+</section>
+<section id="first-steps">
+ <div class="kicker">Your first try</div><h2>Copy this and give AI a go.</h2>
+ <p class="intro">You can paste this into ChatGPT or another AI assistant. It tells the assistant to teach you as a complete beginner.</p>
+ <div class="promptbox">
+  <strong>Beginner's first prompt</strong>
+  <code id="starterPrompt">I am completely new to artificial intelligence. Explain what AI is in simple language. Give me three everyday examples, explain any technical words, and suggest one easy thing I can try myself.</code>
+  <button class="copy" id="copyPrompt" type="button">Copy example</button><span id="copyStatus" aria-live="polite" style="margin-left:10px;color:var(--mint);font-size:.86rem"></span>
+ </div>
+</section>
+<section id="about">
+ <div class="kicker">Why this website exists</div><h2>Made for people who are new to AI.</h2>
+ <div class="two-col">
+  <div class="panel"><h3>A learning project by Ethan</h3><p>I'm Ethan, based in Ireland. I'm learning about artificial intelligence, developing business ideas and improving my coding skills. I don't have a technical background, so I understand how confusing unfamiliar terms can be.</p><p>That's why this website aims to explain AI in a way that someone with no previous knowledge can follow.</p></div>
+  <div class="panel"><h3>Learning through real projects</h3><p>I'm also working on Score Buddy, where I've been learning about marketing and related areas. It's part of my wider experience of learning by doing and understanding how ideas and products are presented to people.</p><p>This site brings those interests together: discovering useful tools and helping other beginners understand what AI can do.</p></div>
+ </div>
+</section>
+<section><div class="callout"><strong style="color:var(--ink)">A note for learners:</strong> AI is useful, but it is not always right. Check important claims, protect your personal information, and use AI to support your own understanding rather than blindly trusting every answer.</div></section>
+</main>
+<footer>© <span id="year">2026</span> AI Made Clear · A beginner-friendly AI learning directory by Ethan.<br>Independent educational project. Tool names and services belong to their respective providers.</footer>
+</div>
+<script>
+const searchInput=document.getElementById('search');
+const cards=[...document.querySelectorAll('.tool')];
+const filterButtons=[...document.querySelectorAll('.filter')];
+const empty=document.getElementById('empty');
+let selectedCategory='All';
+let savedTools=JSON.parse(localStorage.getItem('aimc-saved-tools')||'[]');
+function addToolActions(){cards.forEach(card=>{const name=card.querySelector('h3').textContent;if(card.querySelector('.tool-actions'))return;const box=document.createElement('div');box.className='tool-actions';const save=document.createElement('button');save.className='tool-action';save.type='button';save.textContent='☆ Save';save.setAttribute('aria-label','Save '+name);save.addEventListener('click',()=>{if(savedTools.includes(name)){savedTools=savedTools.filter(x=>x!==name)}else{savedTools.push(name)}localStorage.setItem('aimc-saved-tools',JSON.stringify(savedTools));updateSaveButtons();filterTools()});const copy=document.createElement('button');copy.className='tool-action';copy.type='button';copy.textContent='Copy name';copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(name);copy.textContent='Copied!'}catch(e){copy.textContent=name}});box.append(save,copy);card.append(box)})}
+function updateSaveButtons(){cards.forEach(card=>{const name=card.querySelector('h3').textContent;const b=card.querySelector('.tool-action');if(b){const on=savedTools.includes(name);b.textContent=on?'★ Saved':'☆ Save';b.classList.toggle('saved',on)}})}
+function filterTools(){const query=searchInput.value.trim().toLowerCase();let count=0;cards.forEach(card=>{const name=card.querySelector('h3').textContent;const categoryMatch=selectedCategory==='All'||(selectedCategory==='Saved'?savedTools.includes(name):card.dataset.category===selectedCategory);const text=(card.innerText+' '+card.dataset.search).toLowerCase();const show=categoryMatch&&text.includes(query);card.style.display=show?'flex':'none';if(show)count++});empty.style.display=count===0?'block':'none';document.getElementById('toolCount').textContent=`Showing ${count} ${count===1?'tool':'tools'}`}
+searchInput.addEventListener('input',filterTools);filterButtons.forEach(button=>button.addEventListener('click',()=>{selectedCategory=button.dataset.category;filterButtons.forEach(item=>item.classList.toggle('active',item===button));filterTools()}));
+addToolActions();updateSaveButtons();filterTools();
+document.getElementById('themeToggle').addEventListener('click',()=>{document.body.classList.toggle('light-mode');const light=document.body.classList.contains('light-mode');document.getElementById('themeToggle').textContent=light?'🌙 Switch to dark mode':'☀️ Switch to light mode';localStorage.setItem('aimc-theme',light?'light':'dark')});if(localStorage.getItem('aimc-theme')==='light'){document.body.classList.add('light-mode');document.getElementById('themeToggle').textContent='🌙 Switch to dark mode'}
+document.getElementById('randomTool').addEventListener('click',()=>{const card=cards[Math.floor(Math.random()*cards.length)];selectedCategory='All';filterButtons.forEach(b=>b.classList.toggle('active',b.dataset.category==='All'));searchInput.value='';filterTools();card.scrollIntoView({behavior:'smooth',block:'center'});card.style.outline='2px solid var(--mint)';setTimeout(()=>card.style.outline='',1800)});
+document.getElementById('findTool').addEventListener('click',()=>{const cat=document.getElementById('goalSelect').value;const card=cards.find(c=>c.dataset.category===cat);const out=document.getElementById('finderResult');if(card){const name=card.querySelector('h3').textContent;out.innerHTML=`Try <strong>${name}</strong> — ${card.querySelector('p').textContent} <a href="${card.querySelector('.tool-link').href}" target="_blank" rel="noopener">Visit its website ↗</a>`}else{out.textContent='Try browsing the directory for this category.'}});
+let builtPrompt='';document.getElementById('buildPrompt').addEventListener('click',()=>{const topic=document.getElementById('promptTopic').value.trim()||'[your topic]';const style=document.getElementById('promptStyle').value;builtPrompt=`Explain ${topic} ${style.toLowerCase()}. Assume I am a complete beginner, define any unfamiliar words and give me a practical example.`;document.getElementById('promptResult').textContent=builtPrompt});document.getElementById('copyBuiltPrompt').addEventListener('click',async()=>{if(!builtPrompt)return;try{await navigator.clipboard.writeText(builtPrompt);document.getElementById('copyBuiltPrompt').textContent='Copied!'}catch(e){document.getElementById('promptResult').textContent=builtPrompt+' (Select and copy this text.)'}});
+const quiz=[{q:'What is a prompt?',a:['A type of computer','The instruction you give an AI','A website address'],correct:1,why:'A prompt is the question or instruction you give an AI tool.'},{q:'Can AI make mistakes?',a:['No, never','Yes, it can give incorrect answers','Only when offline'],correct:1,why:'AI can sound confident and still be wrong, so check important information.'},{q:'What does automation mean?',a:['Making repeated tasks happen automatically','Changing your computer screen','Writing a password'],correct:0,why:'Automation means using technology to carry out repeated tasks with less manual work.'}];let qi=0;function renderQuiz(){const q=quiz[qi];const wrap=document.getElementById('quizQuestion');wrap.innerHTML=`<strong>${q.q}</strong>`;q.a.forEach((a,i)=>{const b=document.createElement('button');b.className='quiz-option';b.textContent=a;b.addEventListener('click',()=>{document.getElementById('quizFeedback').textContent=(i===q.correct?'Correct! ':'Not quite. ')+q.why;[...wrap.querySelectorAll('button')].forEach(x=>x.disabled=true)});wrap.append(b)});document.getElementById('quizFeedback').textContent='Choose an answer.'}document.getElementById('nextQuiz').addEventListener('click',()=>{qi=(qi+1)%quiz.length;renderQuiz()});renderQuiz();
+const library=document.getElementById('promptLibrary');function updateLibrary(){document.getElementById('libraryPrompt').textContent=library.value}library.addEventListener('change',updateLibrary);document.getElementById('copyLibraryPrompt').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(library.value);document.getElementById('copyLibraryPrompt').textContent='Copied!'}catch(e){document.getElementById('libraryPrompt').textContent=library.value+' (Select and copy this text.)'}});
+document.getElementById('copyPrompt').addEventListener('click',async()=>{const text=document.getElementById('starterPrompt').innerText;const status=document.getElementById('copyStatus');try{await navigator.clipboard.writeText(text);status.textContent='Copied!'}catch(error){status.textContent='Select the prompt text and copy it.'}});
+window.addEventListener('scroll',()=>{const max=document.documentElement.scrollHeight-window.innerHeight;document.getElementById('readingProgress').style.width=(max>0?window.scrollY/max*100:0)+'%'});
+const topButton=document.createElement('button');topButton.className='back-top';topButton.type='button';topButton.textContent='↑ Top';topButton.setAttribute('aria-label','Back to top');topButton.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));document.body.append(topButton);
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
